@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ethan Ayache, développeur full-stack</title>
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -597,10 +598,12 @@ a:focus-visible{outline:2px solid var(--signal); outline-offset:3px; border-radi
 
   /* Projets : hauteur de la zone = longueur du défilement horizontal */
   const work = $('work'), track = $('workTrack'), bar = $('workBar'), cards = [...track.querySelectorAll('.card')];
+  /* WORK_SLOW : px de scroll vertical par px de défilement horizontal (plus grand = plus lent) */
+  const WORK_SLOW = 2.5;
   let travel = 0;
   function sizeWork(){
     travel = Math.max(0, track.scrollWidth - window.innerWidth);
-    work.style.height = (window.innerHeight + travel) + 'px';
+    work.style.height = (window.innerHeight + travel * WORK_SLOW) + 'px';
   }
   sizeWork(); window.addEventListener('resize', sizeWork);
   if (document.fonts) document.fonts.ready.then(sizeWork);
